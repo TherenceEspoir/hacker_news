@@ -1,0 +1,25 @@
+version: '3.8'
+services:
+
+  postgres:
+    container_name: postgres
+    hostname: postgres
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: clickhouse_pg_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - ${PWD}/fs/volumes/postgres/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+    command:
+      - "postgres"
+      - "-c"
+      - "wal_level=logical" #required for MaterializedPostgreSQL
+
+  web:
+    build: .
+    ports:
+      - "8080:8080"
