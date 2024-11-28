@@ -1,21 +1,14 @@
 package com.hackernews.backend.services;
 
-import com.hackernews.backend.model.dao.HackerNewsRepository;
-import com.hackernews.backend.model.entity.HackerNewsDO;
-import org.springframework.stereotype.Service;
+import com.hackernews.backend.model.dto.HackerNewsDTO;
 
 import java.util.List;
 
-@Service
-public class HackerNewsService {
-    private final HackerNewsRepository hackerNewsRepository;
+public interface HackerNewsService {
+    // Récupérer tous les news
+    List<HackerNewsDTO> getAllNews();
 
-    public HackerNewsService(HackerNewsRepository hackerNewsRepository) {
-        this.hackerNewsRepository = hackerNewsRepository;
-    }
+    //Recuperer les news d'un auteur spécifique
+    List<HackerNewsDTO> getNewsByAuthor(String author);
 
-    public List<HackerNewsDO> getAllNews()
-    {
-        return hackerNewsRepository.findAll();
-    }
 }

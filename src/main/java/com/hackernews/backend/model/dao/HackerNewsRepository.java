@@ -1,7 +1,11 @@
 package com.hackernews.backend.model.dao;
 
-import com.hackernews.backend.model.entity.HackerNewsDO;
+import com.hackernews.backend.model.entity.HackerNewsEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface HackerNewsRepository extends JpaRepository<HackerNewsDO, Long> {
+import java.util.List;
+
+public interface HackerNewsRepository extends JpaRepository<HackerNewsEntity, Long> {
+    List<HackerNewsEntity> findAll();
+    List<HackerNewsEntity> findByBy(String author);
 }
