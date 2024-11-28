@@ -1,6 +1,6 @@
 package com.hackernews.backend.controllers;
 
-import com.hackernews.backend.DO.HackerNewsDO;
+import com.hackernews.backend.model.entity.HackerNewsDO;
 import com.hackernews.backend.services.HackerNewsService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

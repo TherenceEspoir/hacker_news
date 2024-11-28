@@ -1,7 +1,7 @@
 package com.hackernews.backend.services;
 
-import com.hackernews.backend.DAO.HackerNewsRepository;
-import com.hackernews.backend.DO.HackerNewsDO;
+import com.hackernews.backend.model.dao.HackerNewsRepository;
+import com.hackernews.backend.model.entity.HackerNewsDO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
