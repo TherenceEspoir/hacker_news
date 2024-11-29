@@ -1,4 +1,4 @@
-package com.hackernews.backend.model.dao;
+package com.hackernews.backend.model.dao.postgres;
 
 import com.hackernews.backend.model.entity.HackerNewsEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
