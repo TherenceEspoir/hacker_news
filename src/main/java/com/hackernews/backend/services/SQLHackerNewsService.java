@@ -11,7 +11,6 @@ import java.util.List;
 public class SQLHackerNewsService implements HackerNewsService {
     private final HackerNewsRepository hackerNewsRepository;
 
-
     public SQLHackerNewsService(HackerNewsRepository hackerNewsRepository) {
         this.hackerNewsRepository = hackerNewsRepository;
     }
@@ -30,10 +29,9 @@ public class SQLHackerNewsService implements HackerNewsService {
      */
     @Override
     public List<HackerNewsDTO> getNewsByAuthor(String author) {
-        return hackerNewsRepository.findAll()
+        return hackerNewsRepository.findByBy(author)
                 .stream()
                 .map(HackerNewsMapper::toDto)
-                .filter(news->news.by().equalsIgnoreCase(author))
                 .toList();
 
     }
