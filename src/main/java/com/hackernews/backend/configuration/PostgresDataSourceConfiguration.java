@@ -1,5 +1,6 @@
 package com.hackernews.backend.configuration;
 
+import jakarta.persistence.EntityManagerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -19,6 +20,12 @@ import java.util.Objects;
 
 
 @Configuration
+@EnableTransactionManagement
+@EnableJpaRepositories(
+        basePackages = "com.hackernews.backend.model.dao.postgres",
+        entityManagerFactoryRef = "postgresEntityManagerFactory",
+        transactionManagerRef = "postgresTransactionManager"
+)
 public class PostgresDataSourceConfiguration {
 
     @Bean
@@ -27,9 +34,25 @@ public class PostgresDataSourceConfiguration {
         return new DataSourceProperties();
     }
 
-
+    @Primary
     @Bean(name = "postgresDataSource")
     public DataSource postgresDataSource() {
         return postgresDataSourceProperties().initializeDataSourceBuilder().build();
+    }
+
+    @Bean
+    public LocalContainerEntityManagerFactoryBean postgresEntityManagerFactory(
+            @Qualifier("postgresDataSource") DataSource dataSource,
+            EntityManagerFactoryBuilder builder) {
+        return builder
+                .dataSource(dataSource)
+                .packages("com.hackernews.backend.model.entity")
+                .build();
+    }
+
+    @Bean(name = "postgresTransactionManager")
+    public PlatformTransactionManager postgresTransactionManager(
+            @Qualifier("postgresEntityManagerFactory") EntityManagerFactory entityManagerFactory) {
+        return new JpaTransactionManager(entityManagerFactory);
     }
 }

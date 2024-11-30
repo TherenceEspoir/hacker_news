@@ -19,7 +19,7 @@ public class ClickhouseDataSourceConfiguration {
         return new DataSourceProperties();
     }
 
-    @Primary
+    //@Primary
     @Bean(name = "clickhouseDataSource")
     public DataSource clickhouseDataSource() {
         return clickhouseDataSourceProperties().initializeDataSourceBuilder().build();
