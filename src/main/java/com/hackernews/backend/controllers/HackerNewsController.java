@@ -1,8 +1,7 @@
 package com.hackernews.backend.controllers;
 
 import com.hackernews.backend.model.dto.HackerNewsDTO;
-import com.hackernews.backend.model.entity.HackerNewsEntity;
-import com.hackernews.backend.services.SQLHackerNewsService;
+import com.hackernews.backend.services.implementations.HackerNewsServiceImpl;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,9 +12,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/news")
 public class HackerNewsController {
-    private final SQLHackerNewsService hackerNewsService;
+    private final HackerNewsServiceImpl hackerNewsService;
 
-    public HackerNewsController(SQLHackerNewsService hackerNewsService) {
+    public HackerNewsController(HackerNewsServiceImpl hackerNewsService) {
         this.hackerNewsService = hackerNewsService;
     }
 

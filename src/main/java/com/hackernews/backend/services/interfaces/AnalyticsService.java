@@ -1,4 +1,4 @@
-package com.hackernews.backend.services;
+package com.hackernews.backend.services.interfaces;
 
 import java.util.List;
 import java.util.Map;

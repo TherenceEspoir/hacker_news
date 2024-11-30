@@ -1,5 +1,6 @@
-package com.hackernews.backend.services;
+package com.hackernews.backend.services.implementations;
 
+import com.hackernews.backend.services.interfaces.AnalyticsService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;

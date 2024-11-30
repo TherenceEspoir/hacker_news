@@ -1,17 +1,18 @@
-package com.hackernews.backend.services;
+package com.hackernews.backend.services.implementations;
 
 import com.hackernews.backend.model.dao.postgres.HackerNewsRepository;
 import com.hackernews.backend.model.dto.HackerNewsDTO;
 import com.hackernews.backend.model.mapper.HackerNewsMapper;
+import com.hackernews.backend.services.interfaces.HackerNewsService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class SQLHackerNewsService implements HackerNewsService {
+public class HackerNewsServiceImpl implements HackerNewsService {
     private final HackerNewsRepository hackerNewsRepository;
 
-    public SQLHackerNewsService(HackerNewsRepository hackerNewsRepository) {
+    public HackerNewsServiceImpl(HackerNewsRepository hackerNewsRepository) {
         this.hackerNewsRepository = hackerNewsRepository;
     }
 

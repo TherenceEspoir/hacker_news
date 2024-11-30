@@ -1,6 +1,6 @@
 package com.hackernews.backend.controllers;
 
-import com.hackernews.backend.services.AnalyticsServiceImpl;
+import com.hackernews.backend.services.implementations.AnalyticsServiceImpl;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

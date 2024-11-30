@@ -1,4 +1,4 @@
-package com.hackernews.backend.services;
+package com.hackernews.backend.services.interfaces;
 
 import com.hackernews.backend.model.dto.HackerNewsDTO;
 
