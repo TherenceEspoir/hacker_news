@@ -24,18 +24,36 @@ import javax.sql.DataSource;
 )
 public class PostgresDataSourceConfiguration {
 
+    /**
+     * Provides configuration properties for the PostgreSQL data source.
+     *
+     * @return an instance of {@link DataSourceProperties} configured with the PostgreSQL-specific properties
+     */
     @Bean
     @ConfigurationProperties("spring.datasource.postgres")
     public DataSourceProperties postgresDataSourceProperties() {
         return new DataSourceProperties();
     }
 
+    /**
+     * Creates and configures the primary DataSource bean for a PostgreSQL database using
+     * properties defined under the "spring.datasource.postgres" configuration prefix.
+     *
+     * @return a DataSource object configured for PostgreSQL database access
+     */
     @Primary
     @Bean(name = "postgresDataSource")
     public DataSource postgresDataSource() {
         return postgresDataSourceProperties().initializeDataSourceBuilder().build();
     }
 
+    /**
+     * Configures and returns a {@link LocalContainerEntityManagerFactoryBean} for the PostgreSQL data source.
+     *
+     * @param dataSource the PostgreSQL data source
+     * @param builder the builder for creating entity manager factory instances
+     * @return a configured {@link LocalContainerEntityManagerFactoryBean}
+     */
     @Bean
     public LocalContainerEntityManagerFactoryBean postgresEntityManagerFactory(
             @Qualifier("postgresDataSource") DataSource dataSource,
@@ -46,6 +64,12 @@ public class PostgresDataSourceConfiguration {
                 .build();
     }
 
+    /**
+     * Configures a transaction manager for PostgreSQL using the provided EntityManagerFactory.
+     *
+     * @param entityManagerFactory the EntityManagerFactory used to create the transaction manager
+     * @return a PlatformTransactionManager for managing transactions with the PostgreSQL database
+     */
     @Bean(name = "postgresTransactionManager")
     public PlatformTransactionManager postgresTransactionManager(
             @Qualifier("postgresEntityManagerFactory") EntityManagerFactory entityManagerFactory) {
