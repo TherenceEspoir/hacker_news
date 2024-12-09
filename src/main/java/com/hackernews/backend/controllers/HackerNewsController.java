@@ -23,6 +23,12 @@ public class HackerNewsController {
         return hackerNewsService.getAllNews();
     }
 
+    /**
+     * Retrieves a list of news items authored by the specified author.
+     *
+     * @param author the name of the author whose news items are to be retrieved
+     * @return a list of HackerNewsDTO objects authored by the specified author
+     */
     @GetMapping("/search")
     public List<HackerNewsDTO> getNewsByAuthor(@RequestParam("author") String author) {
         return hackerNewsService.getNewsByAuthor(author);

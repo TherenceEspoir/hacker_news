@@ -16,6 +16,13 @@ public class HackerNewsServiceImpl implements HackerNewsService {
         this.hackerNewsRepository = hackerNewsRepository;
     }
 
+
+
+    /**
+     * Retrieves all news items available in the repository.
+     *
+     * @return a list of HackerNewsDTO objects representing all news items
+     */
     public List<HackerNewsDTO> getAllNews()
     {
         return hackerNewsRepository.findAll()
@@ -24,9 +31,13 @@ public class HackerNewsServiceImpl implements HackerNewsService {
                 .toList();
     }
 
+
+
     /**
-     * @param author 
-     * @return
+     * Retrieves news items authored by the specified author.
+     *
+     * @param author the name of the author whose news items are to be retrieved
+     * @return a list of HackerNewsDTO objects representing the news items authored by the specified author
      */
     @Override
     public List<HackerNewsDTO> getNewsByAuthor(String author) {
