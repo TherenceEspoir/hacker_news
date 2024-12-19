@@ -51,6 +51,6 @@ public class UserServiceImpl implements UserDetailsService {
 
     public static void main(String[] args) {
         Base64.Encoder encoder = Base64.getEncoder();
-        System.out.println(encoder.encodeToString("tata:tata".getBytes()));
+        System.out.println(encoder.encodeToString("tony:tony".getBytes()));
     }
 }
