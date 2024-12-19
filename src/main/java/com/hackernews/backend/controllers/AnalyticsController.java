@@ -1,10 +1,12 @@
 package com.hackernews.backend.controllers;
 
+import com.clickhouse.client.internal.google.common.primitives.UnsignedLong;
 import com.hackernews.backend.services.implementations.AnalyticsServiceImpl;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
@@ -18,8 +20,15 @@ public class AnalyticsController {
         this.analyticsService = analyticsService;
     }
 
-    @GetMapping("/median-construction-prices")
-    public List<Map<String, Object>> getMedianConstructionPrices() {
-        return analyticsService.getMedianConstructionPrices();
+    //Nombre de posts par type
+    @GetMapping("/posts-by-type")
+    public Map<String, Long> getPostsByType() {
+        return analyticsService.countPostsByType();
+    }
+
+    //Nombre de posts par date
+    @GetMapping("/posts-by-date")
+    public Map<String, String> getPostsByDate() {
+        return analyticsService.countPostsByDate();
     }
 }
