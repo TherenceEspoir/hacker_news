@@ -1,3 +1,11 @@
+
+-- Création de la table `users`
+CREATE TABLE users (
+                       id SERIAL PRIMARY KEY,
+                       username VARCHAR(50) NOT NULL UNIQUE,
+                       password VARCHAR(255) NOT NULL
+);
+
 CREATE TABLE hacker_news (
                              "id" NUMERIC NOT NULL,
                              "deleted" NUMERIC,

@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/analytics")
+//@RequestMapping("/analytics")
 public class AnalyticsController {
 
     private final AnalyticsServiceImpl analyticsService;
@@ -30,5 +30,10 @@ public class AnalyticsController {
     @GetMapping("/posts-by-date")
     public Map<String, String> getPostsByDate() {
         return analyticsService.countPostsByDate();
+    }
+
+    @GetMapping("/private/ping")
+    public String ping() {
+        return "PONG";
     }
 }
