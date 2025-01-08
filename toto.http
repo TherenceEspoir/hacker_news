@@ -4,20 +4,20 @@ GET https://examples.http-client.intellij.net/get
 
 ###
 
-# curl -X POST "http://localhost:8080/api/users"
-#     -d "username=newuser"
-#     -d "password=newpassword"
-POST http://localhost:8080/api/users
-Content-Type: application/x-www-form-urlencoded
-
-username = newuser
-password = newpassword
-
-###
 POST http://localhost:8080/api/users?username=tony&password=tony
 
 ###
 
+GET http://localhost:8080/api/news
+
 ### le truc du basic est à coder en base 64, un petit utilitaire en UserServiceImpl pour avoir la base 64 , exemple username = tata , password = tata , faut encode "tata:tata" en base 64
-GET http://localhost:8080/private/analytics/posts-by-date
+GET http://localhost:8080/api/news/analytics/posts-by-date
+#Authorization: Basic dG9ueTp0b255
+
+###
+GET http://localhost:8080/api/news/analytics/toto
+
+### ceci n'est pas testé.
+GET http://localhost:8080/private/analytics/posts-by-date?granulrity=monthly
 Authorization: Basic dG9ueTp0b255
+

@@ -7,8 +7,11 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.Month;
+import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 import java.util.stream.Collectors;
 
 @Service
@@ -39,9 +42,9 @@ public class AnalyticsServiceImpl implements AnalyticsService {
         );
     }
 
-    /*
+
     @Override
-    public Map<LocalDate, Long> countPostsByDate() {
+    public Map<LocalDate, UnsignedLong> countPostsByDate() {
         String query = """
         SELECT toDate(time) AS post_date, COUNT(*) AS total_posts
         FROM postgresql_hacker_news_materialised
@@ -50,34 +53,37 @@ public class AnalyticsServiceImpl implements AnalyticsService {
     """;
 
         List<Map<String, Object>> results = clickhouseJdbcTemplate.queryForList(query);
-
-        // Transformer les résultats en Map
         return results.stream().collect(
                 Collectors.toMap(
-                        row -> LocalDate.parse((String) row.get("post_date")),
-                        row -> ((Number) row.get("total_posts")).longValue()
+                        row -> (LocalDate) row.get("post_date"),
+                        row -> UnsignedLong.valueOf(((Number) row.get("total_posts")).longValue())
                 )
         );
     }
-*/
+
+
     @Override
-    public Map<String, String> countPostsByDate() {
+    public Map<Integer, Map<Month, Long>> countPostsByYearAndMonth() {
         String query = """
-        SELECT toDate(time) AS post_date, COUNT(*) AS total_posts
+        SELECT toYear(time) AS year, toMonth(time) AS month, COUNT(*) AS total_posts
         FROM postgresql_hacker_news_materialised
-        GROUP BY post_date
-        ORDER BY post_date
+        GROUP BY year, month
+        ORDER BY year, month
     """;
 
         List<Map<String, Object>> results = clickhouseJdbcTemplate.queryForList(query);
 
-        return results.stream().collect(
-                Collectors.toMap(
-                        row -> row.get("post_date").toString(), // Conversion directe en LocalDate
-                        row -> row.get("total_posts").toString() // Pas de conversion en Long
-                )
-        );
-    }
+        Map<Integer, Map<Month, Long>> postCountByYearAndMonth = new TreeMap<>();
 
+        for (Map<String, Object> row : results) {
+            int year = ((Number) row.get("year")).intValue();
+            Month month = Month.of(((Number) row.get("month")).intValue());
+            long count = ((Number) row.get("total_posts")).longValue();
+
+            postCountByYearAndMonth.computeIfAbsent(year, k -> new EnumMap<>(Month.class)).put(month, count);
+        }
+
+        return postCountByYearAndMonth;
+    }
 
 }

@@ -7,11 +7,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDate;
+import java.time.Month;
 import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/private/analytics")
+//@RequestMapping("/private/analytics")
+@RequestMapping("/api/news/analytics")
 public class AnalyticsController {
 
     private final AnalyticsServiceImpl analyticsService;
@@ -28,8 +30,14 @@ public class AnalyticsController {
 
     //Nombre de posts par date
     @GetMapping("/posts-by-date")
-    public Map<String, String> getPostsByDate() {
+    public Map<LocalDate, UnsignedLong> getPostsByDate() {
         return analyticsService.countPostsByDate();
+    }
+
+    @GetMapping("/toto")
+    public Map<Integer, Map<Month, Long>> countPostsByYearAndMonth()
+    {
+        return analyticsService.countPostsByYearAndMonth();
     }
 
     @GetMapping("/ping")
