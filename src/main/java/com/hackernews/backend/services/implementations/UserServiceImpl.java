@@ -1,5 +1,7 @@
 package com.hackernews.backend.services.implementations;
 
+import com.hackernews.backend.exceptions.UserNotFoundException;
+import com.hackernews.backend.exceptions.UsernameAlreadyExistsException;
 import com.hackernews.backend.model.dao.postgres.UserRepository;
 import com.hackernews.backend.model.entity.UserEntity;
 import org.springframework.security.core.userdetails.User;
@@ -33,21 +35,27 @@ public class UserServiceImpl implements UserDetailsService {
                         .authorities("USER")        // Obligatoire même si pas de rôles
                         .build()
                 )
-                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+                .orElseThrow(() -> new UserNotFoundException(username));
     }
 
 
     public UserEntity createUser(String username, String password) {
         if (userRepository.findByUsername(username).isPresent()) {
-            throw new IllegalArgumentException("Username already exists");
+            throw new UsernameAlreadyExistsException(username);
         }
 
         UserEntity user = new UserEntity();
         user.setUsername(username);
-        user.setPassword(password); // En clair pour l'instant, utilisez un encodeur à terme
+        user.setPassword(password); // En clair pour l'instant, j'utiliserai un encodeur à terme
 
         return userRepository.save(user);
     }
+
+    public boolean validateCredentials(String username, String password) {
+        UserDetails userDetails = loadUserByUsername(username);
+        return userDetails != null && userDetails.getPassword().equals(password);
+    }
+
 
     public static void main(String[] args) {
         Base64.Encoder encoder = Base64.getEncoder();

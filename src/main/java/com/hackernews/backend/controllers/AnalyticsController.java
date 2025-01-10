@@ -30,18 +30,9 @@ public class AnalyticsController {
 
     //Nombre de posts par date
     @GetMapping("/posts-by-date")
-    public Map<LocalDate, UnsignedLong> getPostsByDate() {
-        return analyticsService.countPostsByDate();
-    }
-
-    @GetMapping("/toto")
     public Map<Integer, Map<Month, Long>> countPostsByYearAndMonth()
     {
         return analyticsService.countPostsByYearAndMonth();
     }
 
-    @GetMapping("/ping")
-    public String ping() {
-        return "PONG";
-    }
 }

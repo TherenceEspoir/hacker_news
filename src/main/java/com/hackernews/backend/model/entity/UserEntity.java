@@ -13,8 +13,7 @@ public class UserEntity {
     private String username;
 
     @Column(nullable = false)
-    private String password; // Mot de passe en clair si vous insistez
-
+    private String password;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id",nullable = false)

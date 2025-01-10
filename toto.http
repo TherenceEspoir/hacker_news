@@ -8,6 +8,13 @@ POST http://localhost:8080/api/users?username=tony&password=tony
 
 ###
 
+POST http://localhost:8080/api/news/users?username=tony&password=tony
+
+###
+
+POST http://localhost:8080/api/news/users?username=tata&password=tata
+###
+
 GET http://localhost:8080/api/news
 
 ### le truc du basic est à coder en base 64, un petit utilitaire en UserServiceImpl pour avoir la base 64 , exemple username = tata , password = tata , faut encode "tata:tata" en base 64
@@ -21,3 +28,6 @@ GET http://localhost:8080/api/news/analytics/toto
 GET http://localhost:8080/private/analytics/posts-by-date?granulrity=monthly
 Authorization: Basic dG9ueTp0b255
 
+###
+POST http://localhost:8080/api/news/users/login
+Authorization: Basic dG9ueTp0b255
