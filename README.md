@@ -46,7 +46,7 @@ Avant de commencer, assurez-vous que votre machine dispose des éléments suivan
    ```
 2. Lancer les conteneurs Docker de base de données :
    ```bash
-   docker-compose up -d
+   docker compose up -d
    ```
 3. Construire l'application :
    ```bash
@@ -68,4 +68,9 @@ Avant de commencer, assurez-vous que votre machine dispose des éléments suivan
 ## N-tiers du Backend
 ![Texte alternatif](ntier.png)
 
+## Vue de l'application
+![Texte alternatif](login.png)
+![Texte alternatif](Dashboard.png)
+![Texte alternatif](analytic1.png)
+![Texte alternatif](analytics_2.png)
 
