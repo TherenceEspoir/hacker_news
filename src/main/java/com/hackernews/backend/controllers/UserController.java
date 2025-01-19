@@ -35,12 +35,10 @@ public class UserController {
         String username = credentials[0];
         String password = credentials[1];
 
-        // Vérifie les identifiants (par exemple, en les comparant à ceux stockés dans la base de données)
+        // Vérifie les identifiants
         if (userService.validateCredentials(username, password)) {
-            // Renvoie une réponse positive (par exemple, un jeton d'authentification)
             return ResponseEntity.ok().build();
         } else {
-            // Renvoie une erreur
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
     }

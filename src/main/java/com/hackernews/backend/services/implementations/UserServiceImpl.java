@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Base64;
@@ -51,11 +52,11 @@ public class UserServiceImpl implements UserDetailsService {
         return userRepository.save(user);
     }
 
+
     public boolean validateCredentials(String username, String password) {
         UserDetails userDetails = loadUserByUsername(username);
         return userDetails != null && userDetails.getPassword().equals(password);
     }
-
 
     public static void main(String[] args) {
         Base64.Encoder encoder = Base64.getEncoder();
