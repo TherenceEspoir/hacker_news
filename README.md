@@ -69,8 +69,8 @@ Avant de commencer, assurez-vous que votre machine dispose des éléments suivan
 ![Texte alternatif](ntier.png)
 
 ## Vue de l'application
-![Texte alternatif](login.png)
-![Texte alternatif](Dashboard.png)
-![Texte alternatif](analytic1.png)
-![Texte alternatif](analytics_2.png)
+![Texte alternatif](example/login.png)
+![Texte alternatif](example/Dashboard.png)
+![Texte alternatif](example/analytic1.png)
+![Texte alternatif](example/analytics_2.png)
 
