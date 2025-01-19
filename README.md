@@ -50,11 +50,11 @@ Avant de commencer, assurez-vous que votre machine dispose des éléments suivan
    ```
 3. Construire l'application :
    ```bash
-   ./mvnw clean install
+   mvn clean install
    ```
 4. Lancer l'application Spring Boot :
    ```bash
-   ./mvnw spring-boot:run
+   mvn spring-boot:run
    ```
 5. lancement du frontend :
    ```bash
@@ -66,7 +66,7 @@ Avant de commencer, assurez-vous que votre machine dispose des éléments suivan
 6. S'inscrire via un username + mot de passe => se connecter 
 
 ## N-tiers du Backend
-![Texte alternatif](ntier.png)
+![Texte alternatif](example/ntier.png)
 
 ## Vue de l'application
 ![Texte alternatif](example/login.png)
